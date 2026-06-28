@@ -193,8 +193,9 @@
     .neo-box p { margin: 0; }
 
     .profile-wrap { display: grid; grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.12fr); gap: 58px; align-items: stretch; }
-    .profile-photo { position: relative; min-height: 560px; border-radius: 34px; overflow: hidden; background: linear-gradient(180deg, #dff3fb, #ffffff); border: 1px dashed rgba(9, 104, 184, 0.34); display: grid; place-items: center; box-shadow: var(--shadow-soft); }
+    .profile-photo { position: relative; min-height: 560px; border-radius: 34px; overflow: hidden; background: linear-gradient(180deg, #dff3fb, #ffffff); display: grid; place-items: center; box-shadow: var(--shadow-soft); }
     .photo-placeholder { text-align: center; color: var(--blue); font-weight: 700; }
+    .profile-img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
     .photo-placeholder strong { display: block; font-size: 34px; letter-spacing: 0.14em; }
     .photo-placeholder span { display: block; margin-top: 8px; font-size: 13px; color: var(--muted); }
     .profile-card { padding: 48px; border-radius: 34px; background: var(--white); box-shadow: var(--shadow-soft); border: 1px solid var(--line); }
@@ -1785,11 +1786,8 @@
 
     <section class="section" id="profile">
       <div class="container profile-wrap">
-        <div class="profile-photo reveal" aria-label="プロフィール写真差し替え枠">
-          <div class="photo-placeholder">
-            <strong>PHOTO</strong>
-            <span>プロフィール写真を<br />あとで差し替え</span>
-          </div>
+        <div class="profile-photo reveal" aria-label="羽田奈央のプロフィール写真">
+          <img src="profile.jpg" alt="neat 代表 羽田奈央" class="profile-img" />
         </div>
         <article class="profile-card reveal">
           <span class="section-kicker">Profile</span>
