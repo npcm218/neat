@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>neat｜集客を、整える。</title>
+  <meta name="description" content="neatは、地方の中小企業向けのデジタルマーケティング・パートナーです。Web集客の戦略づくりから実行までを一気通貫でサポートします。" />
+  <style>
+    :root {
+      --navy: #0a3f74;
+      --blue: #0968b8;
+      --sky: #8ed2f0;
+      --pale: #eaf7fc;
+      --pale-2: #f5fbfe;
+      --ink: #123048;
+      --text: #354c5f;
+      --muted: #71879a;
+      --line: #dcecf4;
+      --white: #ffffff;
+      --radius: 26px;
+      --shadow: 0 24px 70px rgba(10, 63, 116, 0.12);
+      --shadow-soft: 0 14px 34px rgba(10, 63, 116, 0.09);
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
+      letter-spacing: 0.03em;
+      line-height: 1.9;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+    button, input, textarea { font: inherit; }
+
+    .site-header {
+      position: fixed; top: 0; left: 0; z-index: 1000; width: 100%;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(220, 236, 244, 0.8);
+      transition: box-shadow 0.25s ease, background 0.25s ease;
+    }
+    .site-header.is-scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 10px 32px rgba(10, 63, 116, 0.08);
+    }
+    .header-inner {
+      width: min(var(--max), calc(100% - 40px));
+      min-height: 82px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 28px;
+    }
+    .brand-logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--navy); font-weight: 600; letter-spacing: 0.08em;
+    }
+    .brand-logo__mark { width: 46px; height: 34px; flex: 0 0 auto; }
+    .brand-logo__text { display: grid; gap: 0; line-height: 1.05; }
+    .brand-logo__name { font-size: 22px; letter-spacing: 0.02em; }
+    .brand-logo__tag { font-size: 9px; color: var(--muted); letter-spacing: 0.12em; font-weight: 500; }
+
+    .global-nav {
+      display: flex; align-items: center; gap: 26px;
+      color: var(--ink); font-size: 14px; font-weight: 500;
+    }
+    .global-nav a:not(.btn) { position: relative; padding: 8px 0; }
+    .global-nav a:not(.btn)::after {
+      content: ""; position: absolute; left: 0; bottom: 0;
+      width: 0; height: 2px; border-radius: 999px; background: var(--blue);
+      transition: width 0.25s ease;
+    }
+    .global-nav a:not(.btn):hover::after { width: 100%; }
+
+    .menu-toggle {
+      display: none; width: 46px; height: 46px; border: 0; border-radius: 999px;
+      background: var(--blue); cursor: pointer;
+      align-items: center; justify-content: center; flex-direction: column; gap: 5px;
+    }
+    .menu-toggle span { width: 18px; height: 2px; border-radius: 999px; background: #fff; transition: transform 0.25s ease, opacity 0.25s ease; }
+    .menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      border: 0; border-radius: 999px; padding: 14px 22px;
+      color: var(--white); background: var(--blue);
+      box-shadow: 0 14px 28px rgba(9, 104, 184, 0.22);
+      font-weight: 600; letter-spacing: 0.04em; cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); background: #075ca4; box-shadow: 0 20px 38px rgba(9, 104, 184, 0.28); }
+    .btn--white { background: var(--white); color: var(--blue); box-shadow: none; }
+    .btn--white:hover { background: #f6fbff; color: var(--blue); }
+    .btn--ghost { background: transparent; color: var(--blue); border: 1px solid rgba(9, 104, 184, 0.22); box-shadow: none; }
+    .btn--ghost:hover { background: var(--pale); box-shadow: none; }
+
+    .arrow {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: inline-grid; place-items: center;
+      background: rgba(255, 255, 255, 0.18); font-size: 13px; line-height: 1;
+    }
+    .btn--white .arrow, .btn--ghost .arrow { background: rgba(9, 104, 184, 0.1); }
+
+    main { padding-top: 82px; }
+    .section { position: relative; padding: 112px 0; }
+    .section--soft { background: linear-gradient(180deg, var(--pale-2), #fff); }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .hero {
+      position: relative; min-height: calc(100vh - 82px);
+      display: grid; align-items: center; overflow: hidden;
+      background: linear-gradient(180deg, #ffffff 0%, #f4fbff 100%);
+      padding: 74px 0 92px;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: auto 0 0 0; height: 34%; min-height: 250px;
+      border-radius: 56% 44% 0 0 / 26% 22% 0 0;
+      background: linear-gradient(135deg, #98d7f0, #0c69b3 62%, #064f98);
+      opacity: 0.98; z-index: 0;
+    }
+    .hero::after { content: ""; display: none; }
+    .hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr; gap: 0; align-items: center; }
+    .hero-content { max-width: 860px; }
+
+    .eyebrow {
+      color: var(--blue); font-size: 13px; line-height: 1.4; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 14px; margin-bottom: 18px; white-space: nowrap;
+    }
+    .eyebrow::before { content: ""; flex: 0 0 auto; width: 32px; height: 6px; border-radius: 999px; background: var(--blue); }
+
+    .hero-title {
+      margin: 0; color: var(--ink); font-weight: 700;
+      font-size: clamp(34px, 5.6vw, 70px); line-height: 1.14; letter-spacing: 0.02em; white-space: nowrap;
+    }
+    .hero-title span { display: inline; }
+    .hero-tagline {
+      display: inline-block; margin: 22px 0 0; padding: 10px 18px; border-radius: 999px;
+      color: #ffffff; background: linear-gradient(135deg, rgba(10,63,116,.78), rgba(9,104,184,.74));
+      font-size: clamp(17px, 1.8vw, 23px); font-weight: 700; letter-spacing: 0.03em;
+      box-shadow: 0 14px 30px rgba(9, 104, 184, 0.16); backdrop-filter: blur(10px);
+    }
+    .hero-copy { max-width: 610px; margin: 30px 0 0; color: var(--text); font-size: 17px; line-height: 2.05; font-weight: 500; }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 36px; }
+
+    .section-head { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.8fr); gap: 38px; align-items: end; margin-bottom: 52px; }
+    .section-kicker { display: block; color: var(--blue); font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { margin: 0; color: var(--ink); font-size: clamp(36px, 5vw, 64px); line-height: 1.18; font-weight: 700; letter-spacing: 0.03em; }
+    .section-title .jp { display: block; margin-top: 12px; color: var(--text); font-size: clamp(19px, 2.2vw, 25px); line-height: 1.7; font-weight: 700; letter-spacing: 0.08em; }
+    .section-lead { margin: 0; color: var(--text); font-weight: 600; line-height: 2.05; }
+
+    .problem-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; max-width: none; margin: 0; }
+    .problem-card { position: relative; overflow: hidden; border: 1px solid rgba(158, 209, 232, .65); border-radius: 24px; background: rgba(255,255,255,.92); padding: 28px 24px; min-height: 220px; box-shadow: var(--shadow-soft); backdrop-filter: blur(8px); }
+    .problem-card::after { content: ""; position: absolute; right: -42px; bottom: -52px; width: 150px; height: 150px; border-radius: 50%; background: var(--pale); }
+    .problem-card__icon { width: 56px; height: 56px; border-radius: 18px; background: linear-gradient(135deg, #eaf7fc, #c2e8f8); display: grid; place-items: center; margin-bottom: 18px; }
+    .problem-card h3 { position: relative; z-index: 1; margin: 0; color: var(--ink); font-size: 17px; line-height: 1.75; font-weight: 700; }
+    .problem-card p { position: relative; z-index: 1; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.85; font-weight: 600; }
+
+    .why-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; max-width: none; margin: 0; }
+    .why-card { position: relative; min-height: 410px; display: flex; flex-direction: column; border-radius: 28px; padding: 34px 30px; color: var(--ink); background: linear-gradient(180deg, #ffffff, #f6fbff); border: 1px solid var(--line); box-shadow: var(--shadow-soft); overflow: hidden; }
+    .why-card:nth-child(2) { background: linear-gradient(180deg, #eaf7fc, #ffffff); }
+    .why-card::before { content: ""; position: absolute; right: -72px; top: -72px; width: 170px; height: 170px; border-radius: 50%; background: rgba(142, 210, 240, 0.36); }
+    .why-num { position: relative; z-index: 1; color: var(--blue); font-size: 15px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 26px; }
+    .why-card h3 { position: relative; z-index: 1; margin: 0; font-size: clamp(18px, 1.65vw, 23px); line-height: 1.52; font-weight: 700; letter-spacing: 0.02em; white-space: normal; word-break: keep-all; }
+    .why-card p { position: relative; z-index: 1; margin: 22px 0 0; color: var(--text); line-height: 2; font-size: 15px; font-weight: 600; }
+
+    .service-stack { display: grid; gap: 28px; }
+    .service-panel { position: relative; overflow: hidden; border-radius: 34px; background: linear-gradient(135deg, #bce8f8 0%, #90d0ee 100%); padding: 48px; min-height: 480px; display: grid; grid-template-columns: minmax(430px, 1fr) minmax(360px, 0.95fr); gap: 44px; align-items: center; box-shadow: var(--shadow-soft); }
+    .service-panel:nth-child(2) { background: linear-gradient(135deg, #d9edff 0%, #a9c9ef 100%); }
+    .service-panel:nth-child(3) { background: linear-gradient(135deg, #eaf7fc 0%, #c9eafa 100%); }
+    .service-panel::after { content: ""; position: absolute; right: -180px; bottom: -160px; width: 480px; height: 310px; border-radius: 50%; background: rgba(255, 255, 255, 0.42); transform: rotate(-14deg); }
+    .service-meta { position: relative; z-index: 2; }
+    .service-label { color: var(--blue); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; }
+    .service-panel h3 { margin: 12px 0 0; color: var(--ink); font-size: clamp(25px, 2.4vw, 34px); line-height: 1.42; font-weight: 700; letter-spacing: 0.03em; word-break: keep-all; overflow-wrap: normal; }
+    .service-meta > p { max-width: 470px; margin: 20px 0 0; color: var(--text); font-weight: 600; line-height: 2; }
+    .service-illustration { width: min(320px, 100%); margin-top: 30px; }
+    .service-items { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .service-items .service-item:last-child { grid-column: 1 / -1; }
+    .service-item { min-height: 88px; border-radius: 18px; padding: 20px 18px; background: rgba(255, 255, 255, 0.92); box-shadow: 0 14px 28px rgba(10, 63, 116, 0.08); display: flex; align-items: center; }
+    .service-item strong { color: var(--ink); font-size: 15px; line-height: 1.6; font-weight: 700; }
+    .service-item span { display: none; }
+    .mini-arrow { display: none; }
+
+    .neo-box { display: flex; justify-content: flex-start; align-items: center; margin-top: 24px; padding: 0; border-radius: 0; background: transparent; border: 0; }
+    .neo-box p { margin: 0; }
+
+    .profile-wrap { display: grid; grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.12fr); gap: 58px; align-items: stretch; }
+    .profile-photo { position: relative; min-height: 560px; border-radius: 34px; overflow: hidden; background: linear-gradient(180deg, #dff3fb, #ffffff); border: 1px dashed rgba(9, 104, 184, 0.34); display: grid; place-items: center; box-shadow: var(--shadow-soft); }
+    .photo-placeholder { text-align: center; color: var(--blue); font-weight: 700; }
+    .photo-placeholder strong { display: block; font-size: 34px; letter-spacing: 0.14em; }
+    .photo-placeholder span { display: block; margin-top: 8px; font-size: 13px; color: var(--muted); }
+    .profile-card { padding: 48px; border-radius: 34px; background: var(--white); box-shadow: var(--shadow-soft); border: 1px solid var(--line); }
+    .profile-card h2 { margin: 0; color: var(--ink); font-size: clamp(22px, 2.3vw, 32px); line-height: 1.25; font-weight: 700; }
+    .profile-role { margin: 10px 0 0; color: var(--blue); font-weight: 700; letter-spacing: 0.08em; }
+    .profile-card p { margin: 28px 0 0; color: var(--text); font-weight: 600; line-height: 2.05; }
+    .profile-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .profile-tags span { padding: 9px 13px; border-radius: 999px; background: var(--pale); color: var(--navy); font-size: 12px; font-weight: 700; }
+
+    .contact-section { position: relative; padding: 128px 0 0; background: linear-gradient(180deg, #f6fbfe 0%, #ffffff 6%, #9ad7f0 6%, #96d3ec 32%, #0b6bbb 32%, #07579f 100%); overflow: hidden; isolation: isolate; }
+    .contact-section::before { content: ""; position: absolute; inset: 14px 0 auto; height: 92px; background: #ffffff; border-radius: 0 0 50% 50% / 0 0 100% 100%; opacity: .96; z-index: 0; }
+    .contact-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 1; filter: saturate(1.06); }
+    .contact-shell { position: relative; z-index: 2; width: min(1020px, calc(100% - 32px)); margin: 0 auto; padding: 0 0 50px; background: transparent; box-shadow: none; }
+    .contact-cta { position: relative; display: grid; grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 12px; max-width: 1020px; margin: 0 auto; padding: 38px 36px; border-radius: 28px; background: rgba(255,255,255,.97); box-shadow: 0 24px 70px rgba(5, 79, 152, 0.18); overflow: hidden; }
+    .contact-cta::before { content: ""; position: absolute; left: -40px; top: -70px; width: 190px; height: 190px; border-radius: 50%; background: rgba(142,210,240,.18); }
+    .contact-cta > * { position: relative; z-index: 1; }
+    .contact-cta .section-kicker { color: var(--blue); margin-bottom: 0; font-size: 14px; letter-spacing: 0.24em; text-transform: uppercase; }
+    .contact-cta .section-title { margin: 0; color: #2f3e4c; font-size: clamp(30px, 3.7vw, 50px); line-height: 1.16; letter-spacing: 0.02em; text-align: center; }
+    .contact-note { margin: 0; color: var(--text); font-weight: 600; line-height: 1.85; font-size: clamp(13px, 1.08vw, 15px); max-width: 860px; text-align: center; }
+
+    .contact-form-wrap { position: relative; z-index: 2; max-width: 1020px; margin: 18px auto 0; padding: 26px 24px; border-radius: 22px; background: rgba(255,255,255,.98); box-shadow: 0 18px 48px rgba(5, 79, 152, 0.14); }
+    .contact-form { display: grid; gap: 18px; }
+    .form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .field { display: grid; gap: 8px; }
+    .field label { color: var(--ink); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; }
+    .field input, .field textarea { width: 100%; border: 1px solid var(--line); border-radius: 16px; background: #f8fcff; padding: 15px 16px; outline: none; color: var(--ink); transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+    .field textarea { min-height: 150px; resize: vertical; }
+    .field input:focus, .field textarea:focus { border-color: var(--sky); box-shadow: 0 0 0 4px rgba(142, 210, 240, 0.28); background: #fff; }
+    .form-message { display: none; margin: 0; padding: 14px 16px; border-radius: 14px; background: var(--pale); color: var(--navy); font-weight: 600; font-size: 14px; }
+    .form-message.is-show { display: block; }
+
+    .site-footer { position: relative; z-index: 1; color: #fff; padding: 80px 0 34px; margin-top: 80px; }
+    .footer-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr) minmax(220px, 0.55fr); gap: 48px; align-items: start; }
+    .footer-logo .brand-logo { color: #fff; }
+    .footer-logo .brand-logo__tag { color: rgba(255,255,255,.72); }
+    .footer-copy { margin: 28px 0 0; font-size: clamp(28px, 4vw, 46px); line-height: 1.35; font-weight: 700; letter-spacing: 0.08em; }
+    .footer-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px 28px; }
+    .footer-nav a { color: rgba(255, 255, 255, 0.86); font-size: 14px; font-weight: 600; }
+    .footer-info { color: rgba(255, 255, 255, 0.78); font-size: 13px; line-height: 1.9; font-weight: 500; }
+    .copyright { display: flex; justify-content: space-between; gap: 20px; margin-top: 70px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.68); font-size: 12px; font-weight: 500; }
+
+    .deco-cloud { position: absolute; width: 180px; opacity: 0.16; pointer-events: none; }
+    .deco-cloud--1 { top: 80px; right: 8vw; }
+
+    .problem-section { background: linear-gradient(180deg, #ffffff 0%, #f4fbfe 100%); }
+    .problem-section .section-head { margin-bottom: 34px; grid-template-columns: 1fr; gap: 0; }
+    .problem-section .section-title { margin-bottom: 0; }
+
+    .why-section .section-head { margin-bottom: 34px; grid-template-columns: 1fr; gap: 0; }
+    .why-section .section-title { white-space: nowrap; }
+
+    .about-band { position: relative; width: calc(100vw - 28px); margin-left: calc(50% - 50vw + 14px); min-height: 760px; overflow: hidden; border-radius: 30px; background: linear-gradient(180deg, #99d6ef 0%, #93d2ec 42%, #0a69b7 42%, #07579f 100%); box-shadow: 0 24px 60px rgba(10, 63, 116, 0.12); isolation: isolate; }
+    .about-band::before { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.14), transparent 58%); z-index: 0; }
+    .about-band__svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+    .about-overlay { position: relative; z-index: 2; min-height: 760px; padding: 62px min(6vw, 72px); display: grid; grid-template-columns: minmax(420px, 1.1fr) minmax(360px, .9fr); align-items: end; gap: 34px; }
+    .about-copy-wrap { align-self: start; justify-self: end; width: min(100%, 490px); padding-top: 0; }
+    .about-copy-wrap .section-kicker { color: rgba(18,48,72,.7); }
+    .about-copy-wrap .section-title { margin: 10px 0 0; color: #123048; font-size: clamp(27px, 2.95vw, 46px); line-height: 1.14; letter-spacing: 0.005em; display: inline-block; padding: 6px 10px 8px 0; max-width: 100%; overflow-wrap: normal; word-break: keep-all; font-weight: 700; }
+    .about-copy-wrap .section-title span { display: block; white-space: nowrap; }
+    .about-textpanel { margin-top: 24px; padding: 26px 28px; border-radius: 26px; background: linear-gradient(180deg, rgba(16,97,176,.82), rgba(10,63,116,.9)); border: 1px solid rgba(255,255,255,.16); color: #ffffff; box-shadow: 0 18px 36px rgba(5, 79, 152, 0.18); backdrop-filter: blur(8px); }
+    .about-textpanel .quote-box { margin: 0 0 20px; padding: 18px 20px; border-radius: 18px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18); color: #ffffff; font-weight: 600; line-height: 1.85; box-shadow: none; }
+    .about-textpanel .quote-box::before { display: none; }
+    .about-textpanel p { margin: 16px 0 0; color: rgba(255,255,255,.95); font-size: 16px; line-height: 2.02; font-weight: 600; }
+    #about.section--soft { background: linear-gradient(180deg, #f6fbfe 0%, #ffffff 100%); padding-top: 24px; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 980px) {
+      .header-inner { min-height: 74px; }
+      main { padding-top: 74px; }
+      .menu-toggle { display: inline-flex; }
+      .global-nav { position: fixed; top: 74px; left: 20px; right: 20px; display: grid; gap: 8px; padding: 18px; border-radius: 24px; background: rgba(255, 255, 255, 0.96); box-shadow: var(--shadow); border: 1px solid var(--line); transform: translateY(-12px); opacity: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; }
+      .global-nav.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+      .global-nav a:not(.btn) { padding: 13px 14px; border-radius: 14px; background: var(--pale-2); }
+      .global-nav .btn { width: 100%; }
+      .hero { min-height: auto; padding: 54px 0 78px; }
+      .hero-inner, .section-head, .profile-wrap { grid-template-columns: 1fr; }
+      .section { padding: 86px 0; }
+      .problem-grid, .why-grid { grid-template-columns: 1fr; max-width: none; }
+      .problem-section .section-head, .why-section .section-head { margin-bottom: 28px; }
+      .why-card { min-height: auto; }
+      .why-card h3 { font-size: 20px; white-space: normal; }
+      .service-panel { grid-template-columns: 1fr; padding: 34px; }
+      .service-panel h3 { white-space: normal; }
+      .neo-box { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .about-band { width: calc(100vw - 20px); margin-left: calc(50% - 50vw + 10px); min-height: 950px; border-radius: 26px; }
+      .about-overlay { min-height: 950px; grid-template-columns: 1fr; align-items: end; padding: 34px 22px 28px; }
+      .about-copy-wrap { justify-self: stretch; width: 100%; }
+      .about-copy-wrap .section-title { font-size: clamp(26px, 7.2vw, 38px); }
+      .about-copy-wrap .section-title span { white-space: normal; }
+      .about-textpanel { padding: 22px 20px; }
+      .contact-shell { width: min(100%, calc(100% - 14px)); }
+      .contact-cta { grid-template-columns: 1fr; gap: 12px; padding: 28px 18px; }
+      .contact-cta .section-title { font-size: clamp(26px, 7.8vw, 38px); }
+      .contact-note { font-size: 13px; }
+      .contact-form-wrap { padding: 22px 16px; }
+    }
+
+    @media (max-width: 680px) {
+      .container, .header-inner, .contact-shell { width: min(100% - 28px, var(--max)); }
+      .brand-logo__mark { width: 40px; height: 30px; }
+      .brand-logo__name { font-size: 20px; }
+      .hero-title { font-size: clamp(32px, 10vw, 44px); }
+      .hero-tagline { color: #fff; }
+      .hero-copy { font-size: 15px; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .hero-actions .btn { width: 100%; }
+      .hero::before { height: 28%; min-height: 180px; }
+      .section-title { font-size: clamp(34px, 11vw, 46px); }
+      .section-title .jp { font-size: 18px; }
+      .profile-photo { min-height: 360px; border-radius: 28px; }
+      .service-panel { padding: 26px; border-radius: 28px; }
+      .service-items { grid-template-columns: 1fr; }
+      .profile-card { padding: 30px 22px; border-radius: 28px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-nav { grid-template-columns: 1fr; }
+      .copyright { flex-direction: column; }
+    }
+  
+
+    /* ===== v13 smooth flow + responsive polish ===== */
+    :root {
+      --section-grad: linear-gradient(180deg, #ffffff 0%, #f6fbfe 48%, #ffffff 100%);
+      --blue-grad: linear-gradient(135deg, #bfeafa 0%, #8ccfec 56%, #5fb2df 100%);
+      --deep-grad: linear-gradient(180deg, #0d6bb8 0%, #07579f 100%);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 8% 12%, rgba(142,210,240,.18), transparent 28%),
+        radial-gradient(circle at 92% 36%, rgba(9,104,184,.08), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #f7fcff 38%, #ffffff 100%);
+    }
+
+    main {
+      background: linear-gradient(180deg, #ffffff 0%, #f6fbfe 42%, #ffffff 100%);
+    }
+
+    .section {
+      padding: clamp(86px, 8vw, 124px) 0;
+      scroll-margin-top: 96px;
+    }
+
+    .section + .section {
+      margin-top: -1px;
+    }
+
+    .problem-section {
+      background:
+        radial-gradient(circle at 85% 8%, rgba(142,210,240,.20), transparent 24%),
+        linear-gradient(180deg, #ffffff 0%, #f5fbfe 78%, #eef8fd 100%);
+      padding-bottom: clamp(92px, 9vw, 138px);
+    }
+
+    #about.section--soft {
+      padding-top: clamp(34px, 5vw, 72px);
+      padding-bottom: clamp(92px, 8vw, 132px);
+      background: linear-gradient(180deg, #eef8fd 0%, #ffffff 18%, #ffffff 100%);
+    }
+
+    .why-section {
+      background:
+        linear-gradient(180deg, #ffffff 0%, #f6fbfe 44%, #ffffff 100%);
+      padding-top: clamp(92px, 8vw, 124px);
+    }
+
+    #service.section--soft {
+      background:
+        radial-gradient(circle at 0% 14%, rgba(142,210,240,.18), transparent 26%),
+        radial-gradient(circle at 100% 60%, rgba(9,104,184,.08), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #f0f9fd 36%, #f7fcff 74%, #ffffff 100%);
+    }
+
+    #profile {
+      background:
+        radial-gradient(circle at 12% 10%, rgba(142,210,240,.16), transparent 26%),
+        linear-gradient(180deg, #ffffff 0%, #f7fcff 100%);
+    }
+
+    .contact-section {
+      margin-top: -1px;
+    }
+
+    .section-head {
+      margin-bottom: clamp(34px, 4.2vw, 56px);
+    }
+
+    .section-title {
+      text-wrap: balance;
+    }
+
+    .section-lead,
+    .hero-copy,
+    .service-meta > p,
+    .profile-card p,
+    .about-textpanel p,
+    .contact-note {
+      text-wrap: pretty;
+    }
+
+    .problem-card,
+    .why-card,
+    .service-panel,
+    .profile-card,
+    .contact-form-wrap,
+    .contact-cta {
+      transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    }
+
+    .problem-card:hover,
+    .why-card:hover,
+    .profile-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 46px rgba(10, 63, 116, 0.12);
+      border-color: rgba(142,210,240,.9);
+    }
+
+    .problem-card {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,253,255,.94));
+    }
+
+    .why-card {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(142,210,240,.34), transparent 32%),
+        linear-gradient(180deg, #ffffff 0%, #f7fcff 100%);
+    }
+
+    .why-card:nth-child(2) {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(142,210,240,.36), transparent 34%),
+        linear-gradient(180deg, #f1fbff 0%, #ffffff 100%);
+    }
+
+    .service-panel {
+      background:
+        radial-gradient(circle at 105% 100%, rgba(255,255,255,.48), transparent 32%),
+        linear-gradient(135deg, #bfeafa 0%, #8bcfeb 100%);
+    }
+
+    .service-panel:nth-child(2) {
+      background:
+        radial-gradient(circle at 105% 100%, rgba(255,255,255,.48), transparent 32%),
+        linear-gradient(135deg, #e6f6ff 0%, #aacff1 100%);
+    }
+
+    .service-panel:nth-child(3) {
+      background:
+        radial-gradient(circle at 105% 100%, rgba(255,255,255,.56), transparent 32%),
+        linear-gradient(135deg, #effaff 0%, #c9eafa 100%);
+    }
+
+    .service-item {
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(220,236,244,.76);
+    }
+
+    .about-band {
+      box-shadow: 0 28px 72px rgba(10,63,116,.14);
+    }
+
+    .about-textpanel {
+      max-height: none;
+    }
+
+    .contact-section {
+      min-height: auto;
+    }
+
+    .contact-cta {
+      background:
+        radial-gradient(circle at 5% 0%, rgba(142,210,240,.18), transparent 26%),
+        rgba(255,255,255,.97);
+    }
+
+    .field input,
+    .field textarea {
+      min-width: 0;
+    }
+
+    @media (max-width: 1120px) {
+      .container,
+      .header-inner {
+        width: min(100% - 36px, var(--max));
+      }
+
+      .service-panel {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 28px;
+      }
+
+      .service-illustration {
+        width: min(250px, 52vw);
+      }
+
+      .service-items {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .profile-wrap {
+        grid-template-columns: .9fr 1.1fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .section {
+        padding: clamp(72px, 11vw, 96px) 0;
+      }
+
+      .hero {
+        padding: 52px 0 86px;
+      }
+
+      .hero-title {
+        white-space: normal;
+        text-wrap: balance;
+      }
+
+      .hero-tagline {
+        max-width: 100%;
+      }
+
+      .hero-copy br {
+        display: none;
+      }
+
+      .problem-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .problem-card {
+        min-height: auto;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .why-card {
+        min-height: auto;
+        padding: 28px 26px;
+      }
+
+      .why-num {
+        margin-bottom: 16px;
+      }
+
+      .service-panel {
+        border-radius: 28px;
+        padding: 30px;
+      }
+
+      .service-panel::after {
+        width: 360px;
+        height: 240px;
+      }
+
+      .profile-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-photo {
+        min-height: 360px;
+      }
+
+      .profile-card {
+        padding: 34px 26px;
+      }
+
+      .about-band {
+        min-height: 900px;
+      }
+
+      .about-overlay {
+        min-height: 900px;
+        padding: 32px 22px 30px;
+      }
+
+      .about-copy-wrap {
+        align-self: end;
+      }
+
+      .about-textpanel {
+        padding: 22px 20px;
+      }
+
+      .about-textpanel .quote-box {
+        padding: 16px 18px;
+      }
+
+      .contact-section {
+        padding-top: 104px;
+      }
+
+      .contact-shell {
+        width: min(100% - 24px, 1020px);
+      }
+
+      .contact-cta {
+        padding: 30px 22px;
+      }
+
+      .contact-form-wrap {
+        padding: 24px 18px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        letter-spacing: 0.02em;
+      }
+
+      .container,
+      .header-inner {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .section-kicker {
+        font-size: 12px;
+      }
+
+      .section-title {
+        font-size: clamp(30px, 9.5vw, 44px);
+        line-height: 1.22;
+      }
+
+      .eyebrow {
+        white-space: normal;
+        font-size: 11px;
+        letter-spacing: .1em;
+      }
+
+      .hero-tagline {
+        font-size: 15px;
+        line-height: 1.75;
+        border-radius: 18px;
+      }
+
+      .hero-copy {
+        font-size: 14px;
+        line-height: 1.95;
+      }
+
+      .problem-card h3 {
+        font-size: 15px;
+      }
+
+      .service-items {
+        grid-template-columns: 1fr;
+      }
+
+      .service-items .service-item:last-child {
+        grid-column: auto;
+      }
+
+      .service-panel {
+        padding: 26px 20px;
+      }
+
+      .service-panel h3 {
+        font-size: clamp(24px, 7vw, 31px);
+      }
+
+      .service-meta > p {
+        font-size: 14px;
+        line-height: 1.95;
+      }
+
+      .service-illustration {
+        width: min(220px, 72vw);
+      }
+
+      .about-band {
+        width: calc(100vw - 16px);
+        margin-left: calc(50% - 50vw + 8px);
+        min-height: 940px;
+        border-radius: 22px;
+      }
+
+      .about-overlay {
+        min-height: 940px;
+      }
+
+      .about-copy-wrap .section-title {
+        font-size: clamp(28px, 8vw, 38px);
+      }
+
+      .about-copy-wrap .section-title span {
+        white-space: nowrap;
+      }
+
+      .about-textpanel p,
+      .about-textpanel .quote-box {
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .profile-card p {
+        font-size: 14px;
+      }
+
+      .contact-cta .section-title {
+        font-size: clamp(28px, 8vw, 38px);
+      }
+
+      .contact-note {
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        gap: 34px;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .header-inner {
+        width: min(100% - 22px, var(--max));
+      }
+
+      .brand-logo__tag {
+        display: none;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 13px 18px;
+      }
+
+      .hero-actions {
+        width: 100%;
+      }
+
+      .hero-title {
+        font-size: clamp(30px, 11vw, 40px);
+      }
+
+      .section-title {
+        font-size: clamp(28px, 10vw, 38px);
+      }
+
+      .problem-card,
+      .why-card,
+      .profile-card,
+      .contact-form-wrap {
+        border-radius: 22px;
+      }
+
+      .about-band {
+        min-height: 980px;
+      }
+
+      .about-overlay {
+        min-height: 980px;
+        padding: 26px 18px;
+      }
+
+      .about-copy-wrap .section-title {
+        font-size: clamp(25px, 7.6vw, 33px);
+      }
+
+      .about-textpanel {
+        padding: 18px 16px;
+        border-radius: 22px;
+      }
+
+      .contact-cta {
+        border-radius: 24px;
+        padding: 28px 18px;
+      }
+
+      .contact-form-wrap {
+        padding: 20px 14px;
+      }
+
+      .field input,
+      .field textarea {
+        border-radius: 14px;
+        padding: 14px 14px;
+      }
+    }
+
+  
+
+    /* ===== v14 desktop polish: header/footer + about composition ===== */
+    .global-nav {
+      gap: 28px;
+      font-size: 14px;
+    }
+
+    .global-nav a:not(.btn) {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-copy {
+      white-space: nowrap;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.25;
+      letter-spacing: 0.05em;
+    }
+
+    #about.section--soft {
+      padding-top: clamp(40px, 5vw, 70px);
+      padding-bottom: clamp(86px, 8vw, 128px);
+      background: linear-gradient(180deg, #eef8fd 0%, #ffffff 22%, #ffffff 100%);
+    }
+
+    .about-band {
+      width: calc(100vw - 32px);
+      margin-left: calc(50% - 50vw + 16px);
+      min-height: 720px;
+      border-radius: 28px;
+      box-shadow: 0 26px 70px rgba(10, 63, 116, 0.15);
+    }
+
+    .about-overlay {
+      width: min(var(--max), calc(100% - 80px));
+      margin: 0 auto;
+      min-height: 720px;
+      padding: 56px 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(380px, 430px);
+      gap: clamp(30px, 5vw, 72px);
+      align-items: start;
+    }
+
+    .about-overlay > div:first-child {
+      min-width: 0;
+    }
+
+    .about-copy-wrap {
+      width: 100%;
+      justify-self: end;
+      align-self: start;
+      padding-top: 20px;
+    }
+
+    .about-copy-wrap .section-title {
+      font-size: clamp(28px, 2.75vw, 42px);
+      line-height: 1.13;
+      letter-spacing: 0.01em;
+      padding-right: 0;
+    }
+
+    .about-copy-wrap .section-title span {
+      white-space: nowrap;
+    }
+
+    .about-textpanel {
+      width: 100%;
+      margin-top: 24px;
+      padding: 26px 28px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(16, 97, 176, 0.82), rgba(10, 63, 116, 0.94));
+      box-shadow: 0 20px 48px rgba(5, 79, 152, 0.22);
+    }
+
+    .about-textpanel .quote-box {
+      font-size: 14px;
+      line-height: 1.85;
+      margin-bottom: 18px;
+    }
+
+    .about-textpanel p {
+      font-size: 14.5px;
+      line-height: 2;
+      margin-top: 14px;
+    }
+
+    .about-band__svg {
+      object-fit: cover;
+    }
+
+    @media (max-width: 1180px) {
+      .about-overlay {
+        width: min(100% - 56px, var(--max));
+        grid-template-columns: minmax(0, 1fr) minmax(360px, 410px);
+      }
+
+      .about-copy-wrap .section-title {
+        font-size: clamp(27px, 3.2vw, 38px);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .about-band {
+        width: calc(100vw - 20px);
+        margin-left: calc(50% - 50vw + 10px);
+        min-height: 900px;
+      }
+
+      .about-overlay {
+        width: min(100% - 36px, var(--max));
+        min-height: 900px;
+        grid-template-columns: 1fr;
+        align-items: end;
+        padding: 36px 0 32px;
+      }
+
+      .about-copy-wrap {
+        justify-self: stretch;
+        align-self: end;
+        padding-top: 0;
+      }
+
+      .about-copy-wrap .section-title {
+        font-size: clamp(28px, 7vw, 40px);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .global-nav a:not(.btn) {
+        font-size: 14px;
+      }
+
+      .footer-copy {
+        white-space: normal;
+        font-size: clamp(28px, 8vw, 38px);
+      }
+
+      .about-band {
+        min-height: 940px;
+        border-radius: 22px;
+      }
+
+      .about-overlay {
+        min-height: 940px;
+        width: min(100% - 28px, var(--max));
+      }
+
+      .about-copy-wrap .section-title {
+        font-size: clamp(26px, 8vw, 36px);
+      }
+
+      .about-textpanel {
+        padding: 20px 18px;
+      }
+
+      .about-textpanel p,
+      .about-textpanel .quote-box {
+        font-size: 13.5px;
+      }
+    }
+
+  
+
+    /* ===== v15 responsive fixes ===== */
+
+    /* Service accordion */
+    .service-actions {
+      position: relative;
+      z-index: 2;
+      align-self: center;
+      display: grid;
+      gap: 0;
+    }
+
+    .service-toggle {
+      width: 100%;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border: 1px solid rgba(220,236,244,.9);
+      border-radius: 20px;
+      padding: 18px 20px;
+      color: var(--ink);
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 14px 28px rgba(10,63,116,.08);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+
+    .service-toggle:hover {
+      transform: translateY(-2px);
+      background: #ffffff;
+      box-shadow: 0 18px 36px rgba(10,63,116,.12);
+    }
+
+    .service-toggle__icon {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--pale);
+      color: var(--blue);
+      font-size: 18px;
+      line-height: 1;
+      transition: transform .28s ease;
+    }
+
+    .service-panel.is-open .service-toggle__icon {
+      transform: rotate(180deg);
+    }
+
+    .service-panel.is-collapsible .service-items {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      margin-top: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition: max-height .48s ease, opacity .28s ease, margin-top .28s ease, transform .28s ease;
+    }
+
+    .service-panel.is-collapsible.is-open .service-items {
+      max-height: 900px;
+      opacity: 1;
+      margin-top: 18px;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Contact background: extend blue area to the content edge */
+    .contact-section {
+      padding-top: clamp(78px, 8vw, 112px);
+      background:
+        linear-gradient(180deg, #9ad7f0 0%, #8ed0ec 34%, #0b6bbb 34%, #07579f 100%);
+    }
+
+    .contact-section::before {
+      display: none;
+    }
+
+    .contact-bg {
+      height: 100%;
+      opacity: 1;
+    }
+
+    .contact-shell {
+      padding-bottom: clamp(38px, 5vw, 56px);
+    }
+
+    .contact-cta .section-title {
+      color: #2f3e4c;
+    }
+
+    /* ① FV mobile: fit as one first-view item around 375-390px wide */
+    @media (max-width: 680px) {
+      main {
+        padding-top: 74px;
+      }
+
+      .hero {
+        min-height: clamp(600px, calc(100svh - 74px), 750px);
+        padding: 42px 0 38px;
+        align-items: start;
+      }
+
+      .hero::before {
+        height: 30%;
+        min-height: 172px;
+        border-radius: 52% 48% 0 0 / 18% 16% 0 0;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .eyebrow {
+        margin-bottom: 16px;
+      }
+
+      .hero-title {
+        font-size: clamp(32px, 9.6vw, 40px);
+        line-height: 1.18;
+        white-space: nowrap;
+      }
+
+      .hero-tagline {
+        margin-top: 18px;
+        padding: 11px 16px;
+        font-size: 14px;
+        line-height: 1.65;
+        border-radius: 16px;
+      }
+
+      .hero-copy {
+        margin-top: 24px;
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .hero-actions {
+        margin-top: 28px;
+      }
+
+      .hero-actions .btn {
+        min-height: 54px;
+        box-shadow: 0 14px 26px rgba(9,104,184,.22);
+      }
+    }
+
+    /* ②・③ About mobile: reduce top sky and improve text readability */
+    @media (max-width: 680px) {
+      #about.section--soft {
+        padding-top: 54px;
+        padding-bottom: 82px;
+      }
+
+      .about-band {
+        min-height: 760px;
+        width: calc(100vw - 16px);
+        margin-left: calc(50% - 50vw + 8px);
+        border-radius: 22px;
+      }
+
+      .about-band__svg {
+        width: 122%;
+        max-width: none;
+        left: -30%;
+        height: 100%;
+      }
+
+      .about-overlay {
+        width: min(100% - 26px, var(--max));
+        min-height: 760px;
+        padding: 250px 0 24px;
+        align-items: start;
+      }
+
+      .about-copy-wrap {
+        align-self: start;
+      }
+
+      .about-copy-wrap .section-kicker {
+        display: inline-block;
+        margin-bottom: 8px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        color: rgba(18,48,72,.78);
+        background: rgba(255,255,255,.54);
+        backdrop-filter: blur(8px);
+      }
+
+      .about-copy-wrap .section-title {
+        display: inline-block;
+        padding: 8px 10px;
+        border-radius: 16px;
+        background: rgba(255,255,255,.68);
+        backdrop-filter: blur(10px);
+        color: #123048;
+        font-size: clamp(27px, 7.4vw, 34px);
+        line-height: 1.14;
+        box-shadow: 0 12px 28px rgba(10,63,116,.08);
+      }
+
+      .about-copy-wrap .section-title span {
+        white-space: nowrap;
+      }
+
+      .about-textpanel {
+        margin-top: 14px;
+        padding: 18px 16px;
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(14,102,183,.82), rgba(8,69,125,.93));
+      }
+
+      .about-textpanel .quote-box {
+        padding: 14px 15px;
+        font-size: 12.5px;
+        line-height: 1.8;
+      }
+
+      .about-textpanel p {
+        font-size: 12.8px;
+        line-height: 1.86;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hero {
+        min-height: 640px;
+      }
+
+      .about-band {
+        min-height: 735px;
+      }
+
+      .about-overlay {
+        min-height: 735px;
+        padding-top: 236px;
+      }
+
+      .about-copy-wrap .section-title {
+        font-size: clamp(25px, 7vw, 31px);
+      }
+
+      .contact-section {
+        padding-top: 62px;
+      }
+
+      .contact-cta {
+        padding: 28px 18px;
+      }
+
+      .contact-cta .section-title {
+        font-size: clamp(28px, 7.4vw, 34px);
+      }
+
+      .contact-note {
+        font-size: 12.8px;
+      }
+    }
+
+  
+
+    /* ===== v16 mobile refinements ===== */
+    @media (max-width: 680px) {
+      /* About：上部の水色余白を約半分に圧縮 */
+      #about.section--soft {
+        padding-top: 42px;
+        padding-bottom: 72px;
+      }
+
+      .about-band {
+        min-height: 620px;
+      }
+
+      .about-overlay {
+        min-height: 620px;
+        padding-top: 118px;
+        padding-bottom: 22px;
+        align-items: start;
+      }
+
+      /* Aboutラベルはスマホでは非表示 */
+      .about-copy-wrap .section-kicker {
+        display: none;
+      }
+
+      .about-copy-wrap .section-title {
+        margin-top: 0;
+        font-size: clamp(25px, 7.1vw, 32px);
+      }
+
+      .about-textpanel {
+        margin-top: 12px;
+      }
+
+      .about-textpanel .quote-box {
+        margin-bottom: 14px;
+      }
+
+      /* サービスのイラストはレスポンシブ時のみ削除 */
+      .service-illustration {
+        display: none;
+      }
+
+      .service-panel {
+        min-height: auto;
+      }
+
+      .service-meta > p {
+        margin-top: 16px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .about-band {
+        min-height: 600px;
+      }
+
+      .about-overlay {
+        min-height: 600px;
+        padding-top: 104px;
+      }
+
+      .about-copy-wrap .section-title {
+        font-size: clamp(24px, 6.9vw, 30px);
+      }
+
+      .about-textpanel {
+        padding: 16px 14px;
+      }
+
+      .about-textpanel .quote-box {
+        font-size: 12px;
+      }
+
+      .about-textpanel p {
+        font-size: 12.5px;
+        line-height: 1.82;
+      }
+    }
+
+  
+
+    /* ===== v17 mobile about fine-tuning ===== */
+    @media (max-width: 680px) {
+      .about-band {
+        min-height: 560px;
+      }
+
+      .about-overlay {
+        min-height: 560px;
+        padding-top: 64px;
+        padding-bottom: 20px;
+      }
+
+      .about-copy-wrap .section-title {
+        font-size: clamp(24px, 6.8vw, 31px);
+      }
+
+      .about-textpanel {
+        margin-top: 10px;
+      }
+
+      .about-textpanel .quote-box,
+      .about-textpanel p {
+        font-size: 12.8px;
+        line-height: 1.82;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .about-band {
+        min-height: 540px;
+      }
+
+      .about-overlay {
+        min-height: 540px;
+        padding-top: 52px;
+        padding-bottom: 18px;
+      }
+
+      .about-copy-wrap .section-title {
+        font-size: clamp(23px, 6.6vw, 29px);
+      }
+
+      .about-textpanel .quote-box,
+      .about-textpanel p {
+        font-size: 12.6px;
+        line-height: 1.8;
+      }
+    }
+
+  
+
+    /* ===== v18 desktop accordion + mobile about centering ===== */
+
+    /* PC: Service 01・02 は開いた状態にする */
+    @media (min-width: 681px) {
+      .service-panel.is-collapsible .service-toggle {
+        display: none;
+      }
+
+      .service-panel.is-collapsible .service-items {
+        max-height: none !important;
+        opacity: 1 !important;
+        overflow: visible !important;
+        margin-top: 20px !important;
+        transform: none !important;
+        pointer-events: auto !important;
+      }
+    }
+
+    /* Mobile: About 見出しを中央寄せ */
+    @media (max-width: 680px) {
+      .about-copy-wrap {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .about-copy-wrap .section-title {
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+
+      .about-copy-wrap .section-title span {
+        white-space: normal;
+      }
+    }
+
+  
+
+    /* ===== v19 final mobile about positioning ===== */
+    @media (max-width: 680px) {
+      .about-band {
+        min-height: 560px;
+      }
+
+      .about-overlay {
+        min-height: 560px;
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+
+      .about-copy-wrap {
+        margin-top: clamp(88px, 20vw, 126px);
+        align-items: center;
+        text-align: center;
+      }
+
+      .about-copy-wrap .section-title {
+        max-width: 300px;
+        padding: 10px 16px;
+        border-radius: 18px;
+      }
+
+      .about-textpanel {
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .about-band {
+        min-height: 540px;
+      }
+
+      .about-overlay {
+        min-height: 540px;
+        padding-top: 12px;
+      }
+
+      .about-copy-wrap {
+        margin-top: 108px;
+      }
+
+      .about-copy-wrap .section-title {
+        max-width: 292px;
+        font-size: clamp(22px, 6.6vw, 28px);
+        line-height: 1.18;
+      }
+    }
+
+  
+
+    /* ===== v20 final about title centering ===== */
+    @media (max-width: 680px) {
+      .about-overlay {
+        position: relative;
+      }
+
+      .about-copy-wrap {
+        width: 100%;
+        margin-top: 0;
+        padding-top: 0;
+        align-items: center;
+        text-align: center;
+      }
+
+      .about-copy-wrap .section-title {
+        position: absolute;
+        left: 50%;
+        top: 42%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        max-width: calc(100% - 36px);
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+        text-align: center;
+        color: #123048;
+      }
+
+      .about-textpanel {
+        margin-top: 250px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .about-copy-wrap .section-title {
+        top: 43%;
+        max-width: calc(100% - 28px);
+        font-size: clamp(22px, 6.4vw, 28px);
+      }
+
+      .about-textpanel {
+        margin-top: 238px;
+      }
+    }
+
+  
+
+    /* ===== v21 emergency mobile about title fix ===== */
+    @media (max-width: 680px) {
+      .about-copy-wrap .section-title {
+        top: 30% !important;
+        transform: translate(-50%, -50%) !important;
+        z-index: 5;
+        text-shadow: 0 2px 10px rgba(255,255,255,.35);
+      }
+
+      .about-textpanel {
+        margin-top: 270px !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .about-copy-wrap .section-title {
+        top: 31% !important;
+        font-size: clamp(22px, 6.4vw, 28px);
+      }
+
+      .about-textpanel {
+        margin-top: 258px !important;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#top" class="brand-logo" aria-label="neat トップへ">
+        <svg class="brand-logo__mark" viewBox="0 0 92 68" role="img" aria-label="neat logo mark">
+          <path d="M9 36C22 16 41 9 62 16c9 3 15 9 21 18" fill="none" stroke="#8ed2f0" stroke-width="8" stroke-linecap="round"/>
+          <path d="M16 44c13-14 29-19 47-13 8 3 13 7 17 13" fill="none" stroke="#0968b8" stroke-width="8" stroke-linecap="round"/>
+          <path d="M25 52h42" stroke="#0a3f74" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="71" cy="52" r="4" fill="#8ed2f0"/>
+        </svg>
+        <span class="brand-logo__text">
+          <span class="brand-logo__name">neat</span>
+          <span class="brand-logo__tag">WebMarketing</span>
+        </span>
+      </a>
+
+      <nav class="global-nav" id="globalNav" aria-label="グローバルナビゲーション">
+        <a href="#problem">お悩み</a>
+        <a href="#service">支援内容</a>
+        <a href="#profile">プロフィール</a>
+        <a class="btn" href="#contact">無料相談 <span class="arrow">→</span></a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content reveal">
+          <span class="eyebrow">WebMarketing, made neat.</span>
+          <h1 class="hero-title"><span>集客を、整える。</span></h1>
+          <p class="hero-tagline">Web集客の戦略立案から実行、サイト制作まで。</p>
+          <p class="hero-copy">
+            Web集客のすべてを一気通貫で伴走する、<br />
+            地方の中小企業のためのマーケティングパートナーです。
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#contact">まずは無料で相談する <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section problem-section" id="problem">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Problem</span>
+            <h2 class="section-title">こんなお悩みを<br />整理します</h2>
+          </div>
+        </div>
+
+        <div class="problem-grid">
+          <article class="problem-card reveal">
+            <div class="problem-card__icon">
+              <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="15" cy="15" r="8" fill="none" stroke="#0968b8" stroke-width="3"/><path d="M21 21l6 6" stroke="#0968b8" stroke-width="3" stroke-linecap="round"/><path d="M12 15h6M15 12v6" stroke="#8ed2f0" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Webで集客したいけど、<br />何から始めればいいか分からない</h3>
+          </article>
+          <article class="problem-card reveal">
+            <div class="problem-card__icon">
+              <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M8 22c0-6 4-11 10-11s10 5 10 11" fill="none" stroke="#0968b8" stroke-width="3" stroke-linecap="round"/><path d="M7 23h5v5H7zM22 23h5v5h-5z" fill="#8ed2f0"/><path d="M18 6v5M14 8h8" stroke="#0968b8" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+            <h3>やり方は何となく分かるが、<br />忙しくて手が回らない</h3>
+          </article>
+          <article class="problem-card reveal">
+            <div class="problem-card__icon">
+              <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="5" y="7" width="24" height="16" rx="4" fill="none" stroke="#0968b8" stroke-width="3"/><path d="M9 12h16M9 17h10" stroke="#8ed2f0" stroke-width="3" stroke-linecap="round"/><path d="M17 23l3 3 7-7" fill="none" stroke="#0968b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>サイトを作ったのに、<br />問い合わせにつながらない</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="about">
+      <div class="about-band reveal" aria-label="大切なお客さまの夢の隣でを表す海のイメージ">
+        <svg class="about-band__svg" viewBox="0 0 1440 760" aria-hidden="true">
+          <path d="M0 168c201 42 383 95 704 95 346 0 527-58 736-118v615H0Z" fill="rgba(255,255,255,.10)"/>
+          <path d="M0 425c170-18 319-16 481-16 147 0 308-8 461-17 181-10 321-9 498 9v359H0Z" fill="#0d60ad"/>
+          <path d="M0 458c203-42 374-79 561-100 196-22 381-17 604 4 116 11 190 23 275 35v363H0Z" fill="#0a5aa7" opacity=".76"/>
+          <path d="M0 604c162-90 309-150 449-186 172-44 333-49 514-41-34 24-61 55-79 90-38 74-38 160-5 293H0Z" fill="#f5f7fa" opacity=".995"/>
+          <path d="M270 476c190-48 370-90 650-124" fill="none" stroke="#cfe9f4" stroke-width="10" stroke-linecap="round"/>
+          <g transform="translate(325 258) scale(0.68)">
+            <path d="M44 206V4" stroke="#2b4058" stroke-width="7" stroke-linecap="round"/>
+            <path d="M46 16c42-18 72 12 115-8v92c-43 19-72-11-115 8z" fill="#0b63af"/>
+            <g transform="translate(8 204)">
+              <circle cx="40" cy="22" r="18" fill="#f6d7be"/>
+              <path d="M28 8c5-11 15-15 26-11 5 2 8 7 8 14-11-2-22-2-34-3Z" fill="#2d313e"/>
+              <path d="M16 46h48c20 0 36 16 36 36v118H0V58c0-7 6-12 16-12Z" fill="#4b8dd0"/>
+              <path d="M24 108h56" stroke="#8fd7f0" stroke-width="9" stroke-linecap="round"/>
+              <path d="M30 200v106M68 200v106" stroke="#353949" stroke-width="12" stroke-linecap="round"/>
+              <path d="M24 304h24M62 304h24" stroke="#353949" stroke-width="9" stroke-linecap="round"/>
+            </g>
+            <g transform="translate(98 204)">
+              <circle cx="40" cy="22" r="18" fill="#f8dec7"/>
+              <path d="M28 8c5-11 15-15 26-11 5 2 8 7 8 14-11-2-22-2-34-3Z" fill="#2d313e"/>
+              <path d="M16 46h48c20 0 36 16 36 36v118H0V58c0-7 6-12 16-12Z" fill="#fbfbfc"/>
+              <path d="M30 200v106M68 200v106" stroke="#4a4d58" stroke-width="12" stroke-linecap="round"/>
+              <path d="M24 304h24M62 304h24" stroke="#4a4d58" stroke-width="9" stroke-linecap="round"/>
+            </g>
+          </g>
+          <path d="M680 142c18-11 32-8 45 4 14 12 30 15 51 7" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+          <path d="M676 136c-10-21-19-26-35-34" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+          <path d="M194 40c38-8 62 5 76 30 15 25 36 45 79 63-58-3-90-26-106-50-14-18-32-23-49-43Z" fill="#ffffff" opacity=".96"/>
+          <path d="M1084 62c49-12 73-1 86 23 12 22 27 39 76 56-60-3-93-18-116-41-14-15-24-22-46-38Z" fill="#ffffff" opacity=".96"/>
+        </svg>
+        <div class="about-overlay">
+          <div></div>
+          <div class="about-copy-wrap">
+            <span class="section-kicker">About</span>
+            <h2 class="section-title"><span>大切なお客さまの、</span><span>夢の隣で。</span></h2>
+            <div class="about-textpanel">
+              <div class="quote-box">「集客したいけど、何から手をつければいいか分からない」</div>
+              <p>
+                地方で頑張る中小企業から、よくいただく声です。<br />
+                neatは、Web集客の戦略づくりから実行までを一気通貫でサポートしています。
+              </p>
+              <p>
+                広告やSNS、サイト制作といった手段の前に、まず「お客さまがどうなりたいか」に耳を傾けます。<br />
+                見込み客との接点を生み出し、商品が売れる仕組みをまるごと構築する。想いに寄り添いながら、夢や目標の達成まで伴走します。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section why-section" id="why">
+      <svg class="deco-cloud deco-cloud--1" viewBox="0 0 280 100" aria-hidden="true"><path d="M10 73c49-43 79-40 112-18 37 25 71-46 148-17-61 9-87 63-144 38-40-17-65 10-116-3z" fill="#0968b8"/></svg>
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Why us</span>
+            <h2 class="section-title">選ばれる理由</h2>
+          </div>
+        </div>
+
+        <div class="why-grid">
+          <article class="why-card reveal">
+            <span class="why-num">01 ｜</span>
+            <h3>プロジェクトを丸ごと預かる</h3>
+            <p>
+              一部分の施策だけを請け負う「作業者」ではありません。忙しい経営者に代わって、
+              Web集客プロジェクト全体を進行・管理するパートナーとして、戦略立案から実行までを一気通貫で担います。
+            </p>
+          </article>
+          <article class="why-card reveal">
+            <span class="why-num">02 ｜</span>
+            <h3>数字にこだわる</h3>
+            <p>
+              やって終わり、作って終わりにはしません。
+              「問い合わせを増やす」というゴールから逆算し、成果が出るまで責任を持って向き合います。
+            </p>
+          </article>
+          <article class="why-card reveal">
+            <span class="why-num">03 ｜</span>
+            <h3>必要なことだけ、正直に</h3>
+            <p>
+              売上のために不要な施策をすすめることはしません。
+              お客さまの目標に本当に必要なことだけを、正直にご提案します。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="service">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Service</span>
+            <h2 class="section-title">支援内容</h2>
+          </div>
+        </div>
+
+        <div class="service-stack">
+          <article class="service-panel reveal is-collapsible">
+            <div class="service-meta">
+              <span class="service-label">Service 01｜Web集客支援</span>
+              <h3>集客の「数字」をつくる</h3>
+              <p>
+                まず目的・予算・商圏から集客戦略を設計。下記の打ち手の中から最適なものを選び、
+                組み合わせて実行します。数字を見ながら改善し、継続的に成果を育てます。
+              </p>
+              <svg class="service-illustration" viewBox="0 0 420 260" aria-hidden="true">
+                <rect x="70" y="36" width="280" height="140" rx="22" fill="#fff" opacity=".92"/>
+                <path d="M108 138V96M158 138V68M208 138V88M258 138V52M308 138V78" stroke="#0968b8" stroke-width="18" stroke-linecap="round"/>
+                <path d="M104 146h216" stroke="#dcecf4" stroke-width="10" stroke-linecap="round"/>
+                <circle cx="324" cy="46" r="18" fill="#8ed2f0"/>
+              </svg>
+            </div>
+            <div class="service-actions">
+              <button class="service-toggle" type="button" aria-expanded="false">
+                <span class="service-toggle__text">対応できる施策を見る</span>
+                <span class="service-toggle__icon">⌄</span>
+              </button>
+              <div class="service-items" aria-hidden="true">
+                <div class="service-item"><strong>Web広告運用</strong></div>
+                <div class="service-item"><strong>SNS運用</strong></div>
+                <div class="service-item"><strong>LINE・メルマガ運用（リピート・顧客育成）</strong></div>
+                <div class="service-item"><strong>LP改善（成約率アップ）</strong></div>
+                <div class="service-item"><strong>SEO</strong></div>
+                <div class="service-item"><strong>アフィリエイト集客</strong></div>
+                <div class="service-item"><strong>インフルエンサーマーケティング</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-panel reveal is-collapsible">
+            <div class="service-meta">
+              <span class="service-label">Service 02｜Web制作</span>
+              <h3>集客の「受け皿」をつくる</h3>
+              <p>
+                ただ作るだけではなく、集客導線と問い合わせ導線を整理。
+                見込み客が行動しやすいWebサイト・LPを制作します。
+              </p>
+              <svg class="service-illustration" viewBox="0 0 420 260" aria-hidden="true">
+                <rect x="64" y="48" width="290" height="164" rx="22" fill="#fff" opacity=".94"/>
+                <rect x="92" y="80" width="88" height="56" rx="12" fill="#8ed2f0" opacity=".92"/>
+                <path d="M204 88h88M204 116h64M92 168h236" stroke="#0968b8" stroke-width="10" stroke-linecap="round"/>
+                <circle cx="90" cy="46" r="14" fill="#8ed2f0" opacity=".9"/>
+                <circle cx="330" cy="56" r="10" fill="#0968b8" opacity=".24"/>
+              </svg>
+            </div>
+            <div class="service-actions">
+              <button class="service-toggle" type="button" aria-expanded="false">
+                <span class="service-toggle__text">対応できる制作内容を見る</span>
+                <span class="service-toggle__icon">⌄</span>
+              </button>
+              <div class="service-items" aria-hidden="true">
+                <div class="service-item"><strong>集客サイト制作</strong></div>
+                <div class="service-item"><strong>オウンドメディア制作</strong></div>
+                <div class="service-item"><strong>採用サイト制作</strong></div>
+                <div class="service-item"><strong>EC(通販)サイト制作</strong></div>
+                <div class="service-item"><strong>撮影・動画編集</strong></div>
+                <div class="service-item"><strong>LP制作</strong></div>
+                <div class="service-item"><strong>アプリ・システム開発</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-panel reveal" id="neo">
+            <div class="service-meta">
+              <span class="service-label">Service 03｜NEO商工</span>
+              <h3>経営者のための<br />AI活用コミュニティ</h3>
+              <p>
+                AI活用・Web集客から資金・人材・承継まで──令和で直面する中小企業課題は、
+                10年前には存在しなかったものばかり。激変の時代に必要な術と仲間を得る
+                経営者団体「NEO商工」を運営しています。
+              </p>
+            </div>
+            <div class="neo-box">
+              <a class="btn" href="https://forms.gle/UvPDZ6CX8RKWkb8k9" target="_blank" rel="noopener noreferrer">勉強会を覗いてみる <span class="arrow">→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="profile">
+      <div class="container profile-wrap">
+        <div class="profile-photo reveal" aria-label="プロフィール写真差し替え枠">
+          <div class="photo-placeholder">
+            <strong>PHOTO</strong>
+            <span>プロフィール写真を<br />あとで差し替え</span>
+          </div>
+        </div>
+        <article class="profile-card reveal">
+          <span class="section-kicker">Profile</span>
+          <h2>羽田 奈央</h2>
+          <p class="profile-role">Web Marketer / neat</p>
+          <p>
+            Webコンサルティング・制作会社にて、Web集客・Web採用の戦略立案から実行までを担当。
+            社内マーケティング部やソーシャルマーケティング事業など、複数の部署をゼロから立ち上げ、事業を牽引。
+          </p>
+          <p>
+            その後、東京の大手広告代理店へ転籍。大規模予算のWeb集客戦略のコンサルティングや、
+            外資系メーカーの広告運用など、予算規模の大きいプロジェクトを多数牽引。
+          </p>
+          <p>
+            戦略立案から実行までを一気通貫で担う実践力と、地方の中小企業に寄り添う姿勢を兼ね備え、
+            クライアントのビジネス課題解決に取り組んでいる。
+          </p>
+          <div class="profile-tags" aria-label="得意領域">
+            <span>Web広告</span><span>SNS運用</span><span>サイト制作</span><span>戦略設計</span><span>地方企業支援</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <svg class="contact-bg" viewBox="0 0 1440 860" aria-hidden="true">
+        <path d="M0 170c208 45 399 104 733 100 348-4 513-68 707-133v723H0Z" fill="rgba(255,255,255,.12)"/>
+        <path d="M0 372c198-22 366-11 560-9 145 1 296-8 446-16 160-8 271-8 434 5v508H0Z" fill="#0b65b4"/>
+        <path d="M0 430c162-42 318-66 489-67 168-1 324 20 494 17 159-2 296-25 457-20v500H0Z" fill="#0a5aa7" opacity=".86"/>
+        <path d="M0 505c230-25 413-8 596 11 189 19 385 45 844 12v332H0Z" fill="#084c92" opacity=".72"/>
+        <path d="M686 126c18-11 32-8 45 4 14 12 30 15 51 7" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+        <path d="M682 120c-10-21-19-26-35-34" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+        <path d="M194 42c38-8 62 5 76 30 15 25 36 45 79 63-58-3-90-26-106-50-14-18-32-23-49-43Z" fill="#ffffff" opacity=".96"/>
+        <path d="M1084 60c49-12 73-1 86 23 12 22 27 39 76 56-60-3-93-18-116-41-14-15-24-22-46-38Z" fill="#ffffff" opacity=".96"/>
+      </svg>
+      <div class="contact-shell reveal">
+        <div class="contact-cta">
+          <div>
+            <span class="section-kicker">Contact</span>
+            <h2 class="section-title">お問合せ</h2>
+          </div>
+          <p class="contact-note">「何から手をつければいいか分からない」段階でも大丈夫です。現状をお聞きして、できることをお伝えします。</p>
+        </div>
+
+        <div class="contact-form-wrap">
+          <form class="contact-form" action="https://formspree.io/f/mlgynvjb" method="POST" id="contactForm">
+            <div class="form-row">
+              <div class="field">
+                <label for="name">お名前</label>
+                <input id="name" name="name" type="text" placeholder="山田 太郎" required />
+              </div>
+              <div class="field">
+                <label for="email">メールアドレス</label>
+                <input id="email" name="email" type="email" placeholder="example@neat.jp" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="company">会社名（任意）</label>
+              <input id="company" name="company" type="text" placeholder="株式会社〇〇" />
+            </div>
+            <div class="field">
+              <label for="message">ご相談内容</label>
+              <textarea id="message" name="message" placeholder="現在のお悩みや、ご相談したい内容をご記入ください。" required></textarea>
+            </div>
+            <p class="form-message" id="formMessage">送信ありがとうございます。内容を確認のうえ、折り返しご連絡いたします。</p>
+            <button class="btn" type="submit">無料で相談する <span class="arrow">→</span></button>
+          </form>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div class="container footer-grid">
+          <div class="footer-logo">
+            <a href="#top" class="brand-logo" aria-label="neat トップへ">
+              <svg class="brand-logo__mark" viewBox="0 0 92 68" aria-hidden="true">
+                <path d="M9 36C22 16 41 9 62 16c9 3 15 9 21 18" fill="none" stroke="#8ed2f0" stroke-width="8" stroke-linecap="round"/>
+                <path d="M16 44c13-14 29-19 47-13 8 3 13 7 17 13" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+                <path d="M25 52h42" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+                <circle cx="71" cy="52" r="4" fill="#8ed2f0"/>
+              </svg>
+              <span class="brand-logo__text">
+                <span class="brand-logo__name">neat</span>
+                <span class="brand-logo__tag">WebMarketing</span>
+              </span>
+            </a>
+            <p class="footer-copy">集客を、整える。</p>
+          </div>
+
+          <nav class="footer-nav" aria-label="フッターナビゲーション">
+            <a href="#problem">お悩み</a>
+            <a href="#about">neatについて</a>
+            <a href="#why">選ばれる理由</a>
+            <a href="#service">支援内容</a>
+            <a href="#profile">プロフィール</a>
+            <a href="#contact">お問い合わせ</a>
+          </nav>
+
+          <div class="footer-info">
+            <strong>neat</strong><br />
+            WebMarketing, made neat.<br /><br />
+            地方の中小企業向け<br />
+            デジタルマーケティング・パートナー
+          </div>
+        </div>
+        <div class="container copyright">
+          <span>© <span id="year"></span> neat. All rights reserved.</span>
+          <a href="#top">Back to Top ↑</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    const menuToggle = document.getElementById('menuToggle');
+    const globalNav = document.getElementById('globalNav');
+    const year = document.getElementById('year');
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+
+    year.textContent = new Date().getFullYear();
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 20);
+    });
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.classList.toggle('is-open');
+      globalNav.classList.toggle('is-open', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    globalNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('is-open');
+        globalNav.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+
+    document.querySelectorAll('.service-toggle').forEach((button) => {
+      button.addEventListener('click', () => {
+        const panel = button.closest('.service-panel');
+        const items = panel.querySelector('.service-items');
+        const isOpen = panel.classList.toggle('is-open');
+
+        button.setAttribute('aria-expanded', String(isOpen));
+        items.setAttribute('aria-hidden', String(!isOpen));
+
+        const label = button.querySelector('.service-toggle__text');
+        if (label) {
+          if (isOpen) {
+            label.textContent = label.textContent.includes('制作') ? '制作内容を閉じる' : '施策を閉じる';
+          } else {
+            label.textContent = items.textContent.includes('集客サイト制作') ? '対応できる制作内容を見る' : '対応できる施策を見る';
+          }
+        }
+      });
+    });
+
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const action = contactForm.getAttribute('action');
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      if (!action) { formMessage.classList.add('is-show'); return; }
+      submitBtn.disabled = true;
+      const originalHTML = submitBtn.innerHTML;
+      submitBtn.textContent = '送信中…';
+      try {
+        const res = await fetch(action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          contactForm.reset();
+          formMessage.textContent = '送信ありがとうございます。内容を確認のうえ、折り返しご連絡いたします。';
+          formMessage.classList.add('is-show');
+        } else {
+          formMessage.textContent = '送信に失敗しました。お手数ですが時間をおいて再度お試しください。';
+          formMessage.classList.add('is-show');
+        }
+      } catch (e) {
+        formMessage.textContent = '送信に失敗しました。通信環境をご確認のうえ、再度お試しください。';
+        formMessage.classList.add('is-show');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+      }
+    });
+  </script>
+</body>
+</html>
